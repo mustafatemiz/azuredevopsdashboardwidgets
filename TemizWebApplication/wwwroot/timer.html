@@ -1,0 +1,90 @@
+﻿<!--
+    Copyright 2021 Mustafa Temiz
+    www.temiz.dk
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TIMER</title>
+    <style>
+        body {
+            color: ghostwhite;
+            background-color: dodgerblue;
+            font-family: "Segoe UI VSS (Regular)", "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            text-align: center;
+            margin-top: 15px;
+            margin-left: 3px;
+        }
+
+        #title {
+            font-size: 16px;
+            font-weight: 300;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #content {
+            font-size: 72px;
+            font-weight: 300;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #subtitle {
+            font-size: 14px;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div onclick="startTimer();">
+        <h2 id="title">Timer</h2>
+        <p id="content">15:00</p>
+        <p id="subtitle"></p>
+    </div>
+    <script>
+        var started = false;
+        function startTimer() {
+            if (started == false) {
+                started = true;
+                var totalSeconds = 15 * 60;
+                var x = setInterval(function () {
+                    // Calculate minutes and seconds
+                    var minutes = Math.floor(totalSeconds / 60);
+                    var seconds = (totalSeconds % 60);
+
+                    // Prepare timer string with leading zero
+                    var timer;
+                    if (minutes < 10) {
+                        timer = "0" + minutes;
+                    } else {
+                        timer = minutes;
+                    }
+                    if (seconds < 10) {
+                        timer = timer + ":0" + seconds;
+                    } else {
+                        timer = timer + ":" + seconds;
+                    }
+
+                    // Print timer
+                    document.getElementById("content").innerHTML = timer;
+
+                    // Stop if timer is done
+                    if (totalSeconds < 0) {
+                        clearInterval(x);
+                        document.getElementById("content").innerHTML = "00:00";
+                    }
+
+                    // Count down timer
+                    totalSeconds = totalSeconds - 1;
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+
+</html>

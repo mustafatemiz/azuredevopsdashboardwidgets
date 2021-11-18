@@ -1,0 +1,71 @@
+﻿<!--
+    Copyright 2021 Mustafa Temiz
+    www.temiz.dk
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CLOCK</title>
+    <style>
+        body {
+            color: black;
+            background-color: ghostwhite;
+            font-family: "Segoe UI VSS (Regular)", "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            text-align: center;
+            margin-top: 15px;
+            margin-left: 3px;
+        }
+
+        #title {
+            font-size: 16px;
+            font-weight: 300;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #content {
+            font-size: 72px;
+            font-weight: 300;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #subtitle {
+            font-size: 14px;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2 id="title">Friday, May 25</h2>
+        <p id="content">23:59</p>
+        <!-- <p id="subtitle">DEBUG</p> -->
+    </div>
+    <script>
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const weekdayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+        function clock() {
+            var date = new Date();
+
+            var minutes = date.getMinutes();
+            var hours = date.getHours();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var weekday = date.getDay() - 1;
+
+            document.getElementById("title").innerHTML = weekdayNames[weekday] + ", " + monthNames[month] + " " + day;
+            document.getElementById("content").innerHTML = ("0" + hours).substr(-2) + ":" + ("0" + minutes).substr(-2);
+        }
+
+        clock();
+        setInterval(clock, 1000 * 10)
+    </script>
+</body>
+
+</html>
